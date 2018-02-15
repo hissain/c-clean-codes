@@ -1,7 +1,6 @@
 
-
 int sstrlen(const char *str){
-    int len = 0;
+    register int len = 0;
     while(str[len]) len++;
     return len;
 }
@@ -19,6 +18,7 @@ bool sstrcmp(const char *s1, const char *s2){
     
     if(l1 != l2)
         return false;
+    
     for(register int i = 0; i < l1; i++)
         if(s1[i] != s2[i])
             return false;
@@ -58,5 +58,12 @@ char* sstrchr(const char *str, const char c){
     return (str + i);
 }
 
-
+void sstrrev(const char *str){
+    int len = sstrlen(str);
+    for(register int i = 0; i < len/2; i++){
+        char c = str[i];
+        str[i] = str[len - 1 - i];
+        str[len - 1 - i] = c;
+    }
+}
 
